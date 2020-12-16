@@ -13,7 +13,7 @@ class IntroScreen extends StatelessWidget {
         navigateAfterSeconds: result != null ? Home(uid: result.uid) : SignUp(),
     seconds: 5,
     title: new Text(
-    'Welcome To Auth App !',
+    'Welcome To GoCowry !',
     style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
     ),
         image: Image.asset('assets/images/dart.png', fit: BoxFit.scaleDown),

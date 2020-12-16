@@ -1,19 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'signup.dart';
 
 class Home extends StatelessWidget {
   Home({this.uid});
   final String uid;
-  final String title = "Home";
+  final String title = "GoCowry Home";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
+          backgroundColor: Colors.green[700],
           actions: <Widget>[
             IconButton(
               icon: Icon(
@@ -32,8 +34,40 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: Center(child: Text('Welcome!')),
+        body: MyApp(),
         drawer: NavigateDrawer(uid: this.uid));
+  }
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+class _MyAppState extends State<MyApp> {
+  GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(45.521563, -122.677433);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+//        appBar: AppBar(
+//          title: Text('Maps Sample App'),
+//          backgroundColor: Colors.green[700],
+//        ),
+        body: GoogleMap(
+          onMapCreated: _onMapCreated,
+          initialCameraPosition: CameraPosition(
+            target: _center,
+            zoom: 11.0,
+          ),
+        ),
+      ),
+    );
   }
 }
 

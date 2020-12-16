@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_firebase/screens/email_signup.dart';
 import 'home.dart';
 
 class EmailLogIn extends StatefulWidget {
@@ -82,7 +82,20 @@ class _EmailLogInState extends State<EmailLogIn> {
                         },
                         child: Text('Submit'),
                       ),
-              )
+              ),
+            InkWell(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EmailSignUp()),
+                );
+              },
+               child: Text("not yet registered? click here",
+                   style: TextStyle(
+                       fontWeight: FontWeight.bold,
+                       fontSize: 18,
+                       fontFamily: 'Roboto'),
+            ))
             ]))));
   }
 
